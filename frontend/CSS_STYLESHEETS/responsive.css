@@ -1,6 +1,6 @@
 @media screen and (max-width: 1200px) {
     .everything{
-        padding :1rem 2r=m !important;
+        padding :1rem 1rem !important;
     }
     
     section.mainSection section.mainSection-main{
@@ -10,16 +10,25 @@
         justify-content: center;
         text-align: center;
     }
-    
+    section.mainSection-main div.mainSection-main-cta div.cta-button {
+    margin: 0 auto;
+}
     section.mainSection section.mainSection-Img_Video-Prnt{
         width: 100%;
         flex: 1 1 100%;
     }
+    section.mainSection .mainSection-main-clientReviews{
+        flex-direction: column;
+    }
+        .clientProfiles{
+    display: flex;
+    margin: 0 auto;
+}
 }
 
 @media screen and (max-width: 768px) {
     .mainNav{
-        display: none ;
+        display: none !important;
     }
     
     .mainNav a{
@@ -32,12 +41,12 @@
     
     .search-bar-parent{
         width: 100%;
-        flex: 1 1 100%;
+    
     }
     
     .drop-down-parent{
         width: 45%;
-        min-width: 120px;
+        min-width: 90px;
     }
     
     section.mainSection section.mainSection-main{
@@ -51,12 +60,15 @@
     section.mainSection section.mainSection-Img_Video-Prnt .mainSection-Img_Video{
         min-height: 300px;
     }
+    .clientProfiles{
+    display: flex;
+    margin: 0 auto;
 }
-
+section.mainSection-main div.mainSection-main-cta div.cta-button {
+    margin: 0 auto;
+}
+}
 @media screen and (max-width: 480px) {
-    .mainNav{
-        display: none;
-    }
     
     .headerCallToAction{
         margin-left: 0;
