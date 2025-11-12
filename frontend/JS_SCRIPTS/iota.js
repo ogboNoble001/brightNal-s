@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    }); 
     var arrayOfTrendingAndSearched = ['Man', 'Woman', 'Kids', 'Shoes', 'Bags', 'Watches'];
     const trendingAndSearchedDiv = document.querySelector('.trendingAndSearched-parent');
     arrayOfTrendingAndSearched.forEach(item => {

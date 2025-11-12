@@ -25,6 +25,7 @@ body {
     background-color: #E9E9E9;
     color: #000000;
     line-height: 1.6;
+    width: 100%;
 }
 
 .flex-col{
@@ -82,6 +83,9 @@ body {
     cursor: pointer;
     min-width: 1em;
     min-height: 1em;
+}
+main{
+    width: 100%;
 }
 .everything{
     padding: 1.5em 4em;
@@ -143,18 +147,18 @@ body {
 }
 
 .nav-search-searchedProducts{
-    justify-content: flex-start;
     flex-wrap: wrap;
+    width: 100%;
+    overflow-x: scroll !important;
+    
 }
-
 .search-bar-parent{
+    min-width: 300px !important;
+    max-width: 400px;
     flex-direction: row-reverse !important;
-    width: 25%;
-    max-width: 600px;
     background-color: #ffffff;
     border-radius: 20px;
-    padding: .6em .6em .4em .1em;
-    margin: 0 auto;
+    padding: .6em .6em .4em .4em;
     width: 100%;
 }
 
@@ -173,6 +177,7 @@ body {
 }
 .drop-down-scrollPrnt{
     width: 100%;
+    overflow-x: hidden;
 }
 .drop-down-parent{
     width: 15%;
@@ -199,7 +204,7 @@ body {
 
 .trendingAndSearched-parent{
     display: flex;
-    overflow-x: scroll;
+    overflow-x: scroll !important;
     justify-content: flex-start;
 }
 

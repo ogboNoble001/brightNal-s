@@ -28,10 +28,26 @@
     }
     .search-bar-parent{
         width: 100%;
-        flex: 1 1 45%;
         flex-direction: row-reverse !important;
     }
     
+}
+@media screen and (min-width: 610px)  {
+    /* *{ 
+        display: none;
+    } */
+.nav-search-searchedProducts{
+        flex-wrap: nowrap !important;
+}
+.trendingAndSearched-parent{
+    display: flex;
+    overflow-x: scroll !important;
+}
+.search-bar-parent{
+    max-width: 300px !important;
+    position: sticky;
+    left: 0;
+} 
 }
 
 @media screen and (max-width: 768px) {
