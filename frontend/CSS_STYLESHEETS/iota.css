@@ -99,8 +99,10 @@ body {
 }
 .navigation-home{
     position: sticky;
+    padding: 1em 4em;
     z-index: 2000;
     top: 0;
+    transition: box-shadow ease-in-out .2s;
     background-color: var(--secondary-color);
 }
 .logo{
@@ -117,9 +119,10 @@ body {
     font-weight: 300;
 }
 .scrolled{
-    width: 100%;
-  padding: 1em 0;
-  box-shadow: 0 2px px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 1em 1em; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
 }
 .mainNav a{
     text-decoration: none;
