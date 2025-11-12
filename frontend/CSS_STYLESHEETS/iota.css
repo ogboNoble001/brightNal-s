@@ -43,10 +43,6 @@ body {
     align-items: center;
 }
 
-.everything{
-    padding: 1.5em 4em;
-}
-
 .text-muted{
     color: #555555;
 }
@@ -87,6 +83,9 @@ body {
     min-width: 1em;
     min-height: 1em;
 }
+.everything{
+    padding: 1.5em 4em;
+}
 .overlay{
     display: none;
     position: fixed;
@@ -98,12 +97,17 @@ body {
     backdrop-filter: blur(20px) saturate(180%) contrast(75%) sepia(30%);
     z-index: 1000;
 }
+.navigation-home{
+    position: sticky;
+    z-index: 2000;
+    top: 0;
+    background-color: var(--secondary-color);
+}
 .logo{
     width: 25px;
     height: 25px;
     transform: scale(1.9);
-    margin: 0 auto;
-    padding: 0 auto;
+    margin: 0 0 0 .6em;
 }
 .mainNav{
     display: flex;
@@ -112,7 +116,11 @@ body {
     gap: 4em;
     font-weight: 300;
 }
-
+.scrolled{
+    width: 100%;
+  padding: 1em 0;
+  box-shadow: 0 2px px rgba(0, 0, 0, 0.1);
+}
 .mainNav a{
     text-decoration: none;
     color: #000000;

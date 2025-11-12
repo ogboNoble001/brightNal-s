@@ -2,7 +2,9 @@
     .everything{
         padding :1rem 1rem !important;
     }
-    
+    .everything:has(.scrolled) {
+    padding: inherit 0em !important;
+}
     section.mainSection section.mainSection-main{
         width: 100%;
         flex: 1 1 100%;

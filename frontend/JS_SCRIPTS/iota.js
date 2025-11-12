@@ -1,4 +1,14 @@
 window.addEventListener('DOMContentLoaded', () => {
+    // Scroll event to add shadow to navbar on scroll
+    const navbar = document.querySelector('.navigation-home');
+    window.addEventListener('scroll', () => {});
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
     var arrayOfTrendingAndSearched = ['Man', 'Woman', 'Kids', 'Shoes', 'Bags', 'Watches'];
     const trendingAndSearchedDiv = document.querySelector('.trendingAndSearched-parent');
     arrayOfTrendingAndSearched.forEach(item => {
