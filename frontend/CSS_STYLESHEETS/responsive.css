@@ -51,6 +51,10 @@
 }
 
 @media screen and (max-width: 768px) {
+    
+section.mainSection-main div.mainSection-main-tagline{
+    margin: 0 auto !important;
+}
     .mainNav{
         display: none !important;
     }

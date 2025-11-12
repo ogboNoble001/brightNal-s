@@ -84,9 +84,6 @@ body {
     min-width: 1em;
     min-height: 1em;
 }
-.bold{
-    font-weight: bolder !important;
-}
 main{
     width: 100%;
 }
@@ -234,7 +231,7 @@ section.mainSection section.mainSection-main{
     flex-direction: column;
     justify-content: space-between;
     gap: 1.5em;
-    padding: .4em;
+    padding: .4em .6em;
     background-color: #ffffff;
     border-radius: 32px;
     font-size: clamp(1.8rem, 4vw, 2.9rem);
@@ -261,10 +258,9 @@ section.mainSection-main div.mainSection-main-text .masked-word{
 
 
 section.mainSection-main div.mainSection-main-tagline {
-    margin: 0 auto;
     margin-bottom: 1em;
-    max-width: 270px;
-    font-size: .6em !important;
+    max-width: 330px;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
     font-weight: var(--regular-font-weight);
     color: var(--text-muted-color);
     line-height: 1.5;
@@ -354,94 +350,30 @@ section.mainSection .mainSection-main-clientReviews .reviewSubText{
     margin-left: 0; 
 }
 
-section.mainSection section.mainSection-Img_Video-Prnt {
+section.mainSection section.mainSection-Img_Video-Prnt{
     width: calc(50% - 0.75em);
     min-width: 320px;
+    height: 100%;
     flex: 1 1 45%;
     border-radius: 32px;
     overflow: hidden;
-    color: #000000;
-    position: relative;
     background-color: #ffffff;
-    height: 100%;
-    min-height: 700px;
 }
 
-section.mainSection section.mainSection-Img_Video-Prnt::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
+section.mainSection section.mainSection-Img_Video-Prnt .mainSection-Img_Video-Media{
     width: 100%;
-    height: 50%;
-    
-    pointer-events: none; 
+    height: 540px;
+    border-radius: 32px;
+    object-fit: cover;
+    display: block;
 }
-.mainSection-overlayText {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 1em;
-  font-family: var(--font-family-base);
+section.mainSection-Img_Video-Prnt .mainSection-Img_Video-Media img{
+    height: 230px;
+    max-height: 230px;
 }
-
-.mainSection-overlayText h2 {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: var(--bold-font-weight);
-  margin-bottom: 0.5em;
-}
-
-.mainSection-overlayText span {
-  font-size: clamp(0.9rem, 1.5vw, 1rem);
-  font-weight: var(--regular-font-weight);
-  
-}
-
 .animateTxt span {
     display: inline-block;
-    opacity: 0;
-    animation:
-        text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) forwards,
-        scale-in-tl 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) forwards;
+    animation: 
+    text-focus-in 1s ease forwards,
+    scale-in-tl 0.5s ease forwards;
 }
-    .mainSectione {
-        display: flex;
-        gap: 0.001em;
-        margin: 0 auto;
-    
-  }
-  .mainSectione span{
-    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
-    font-weight: var(--bold-font-weight);
-    color: var(--text-muted-color);
-    max-width: fit-content;
-    font-size: 1.2em;
-    font-weight: inherit;
-    font-family: var(--font-family-base);
-  }
-  .digit {
-    display: inline-block;
-    min-width: fit-content;
-    text-align: center;
-    color: #000000;
-    opacity: 0;
-    
-  }
-  .digit.active {
-     color: #000000;
-    opacity: 1;
-  }
-  .digit.rolling {
-    color: #000000;
-  }
-  
-  .mainSection-Img_Video-Media{
-margin-right: 1em;
-      
-  }
-  .mainSection-Img_Video-Media img{
-      height: 350px;
-      
-  }
