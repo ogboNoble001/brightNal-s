@@ -362,7 +362,7 @@ section.mainSection section.mainSection-Img_Video-Prnt{
 
 section.mainSection section.mainSection-Img_Video-Prnt .mainSection-Img_Video-Media{
     width: 100%;
-    height: 540px;
+    height: 340px;
     border-radius: 32px;
     object-fit: cover;
     display: block;
@@ -373,6 +373,7 @@ section.mainSection-Img_Video-Prnt .mainSection-Img_Video-Media img{
 }
 .animateTxt span {
     display: inline-block;
+    opacity: 0;
     animation: 
     text-focus-in 1s ease forwards,
     scale-in-tl 0.5s ease forwards;
