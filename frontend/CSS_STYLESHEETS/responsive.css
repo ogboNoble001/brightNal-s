@@ -24,6 +24,13 @@
     display: flex;
     margin: 0 auto;
 }
+
+    .search-bar-parent{
+        width: 100%;
+        flex: 1 1 45%;
+    
+    }
+    
 }
 
 @media screen and (max-width: 768px) {

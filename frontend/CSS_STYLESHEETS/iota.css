@@ -87,7 +87,24 @@ body {
     min-width: 1em;
     min-height: 1em;
 }
-
+.overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%) contrast(75%) sepia(30%);
+    z-index: 1000;
+}
+.logo{
+    width: 25px;
+    height: 25px;
+    transform: scale(1.9);
+    margin: 0 auto;
+    padding: 0 auto;
+}
 .mainNav{
     display: flex;
     align-items: center;
@@ -182,6 +199,7 @@ section.mainSection{
 }
 
 section.mainSection section.mainSection-main{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -195,7 +213,6 @@ section.mainSection section.mainSection-main{
     min-width: 320px;
     flex: 1 1 45%;
 }
-
 section.mainSection-main div.mainSection-main-text {
     width: auto;
     letter-spacing: -.01em;
