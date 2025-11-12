@@ -172,7 +172,6 @@ body {
     color: var(--text-muted-color);
 }
 .drop-down-scrollPrnt{
-    overflow-x: scroll;
     width: 100%;
 }
 .drop-down-parent{
@@ -196,6 +195,12 @@ body {
     height: 1em;
     border-radius: 50%;
     background-color: #F2F2F2;
+}
+
+.trendingAndSearched-parent{
+    display: flex;
+    overflow-x: scroll;
+    justify-content: flex-start;
 }
 
 .trendingAndSearched{
