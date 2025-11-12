@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
+    
     // Scroll event to add shadow to navbar on scroll
     const navbar = document.querySelector('.navigation-home');
     window.addEventListener('scroll', () => {});
@@ -39,4 +40,49 @@ window.addEventListener('DOMContentLoaded', () => {
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         return { letter: randomLetter, color: randomColor };
     }
-});
+    
+    const container = document.querySelector(".animateTxt");
+  if (container) {
+    const words = container.textContent.trim().split(/\s+/);
+    container.textContent = "";
+    words.forEach((word, index) => {
+      const span = document.createElement("span");
+      span.textContent = word + "\u00A0";
+      span.style.animationDelay = `${index * 0.15}s`;
+      container.appendChild(span);
+    });
+  }
+  
+  function animateOdometer(selector, delay = 100, rolls = 10) {
+    const elements = document.querySelectorAll(selector);
+    
+    elements.forEach(el => {
+        const text = el.textContent;
+        el.textContent = '';
+        const digitsArray = Array.from(text);
+        
+        digitsArray.forEach((char, idx) => {
+            const span = document.createElement('span');
+            span.classList.add('digit');
+            el.appendChild(span);
+            
+            setTimeout(() => {
+                span.classList.add('active', 'rolling');
+                let count = 0;
+                
+                const interval = setInterval(() => {
+                    span.textContent = Math.floor(Math.random() * 10);
+                    count++;
+                    
+                    if (count >= rolls) {
+                        clearInterval(interval);
+                        span.textContent = char;
+                        span.classList.remove('rolling');
+                    }
+                }, delay);
+            }, idx * 50);
+        });
+    });
+}
+animateOdometer( '.mainSectione', 100, 25);
+})
