@@ -85,4 +85,44 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 }
 animateOdometer( '.mainSectione', 100, 25);
+
+AOS.init();
+
+    function revealText(selector, baseDelay = 50, wordPause = 300, useScroll = false) {
+      const container = document.querySelector(selector);
+      const text = container.textContent.trim();
+      container.textContent = '';
+      let delay = 0;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const span = document.createElement('span');
+
+        if (char === ' ') {
+          span.innerHTML = '&nbsp;';
+          delay += wordPause;
+        } else {
+          span.textContent = char;
+        }
+
+        if (useScroll) {
+          span.setAttribute('data-aos', 'fade-up');
+          span.setAttribute('data-aos-delay', delay.toString());
+          span.setAttribute('data-aos-duration', '400');
+        } else {
+          setTimeout(() => {
+            span.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            span.style.opacity = 1;
+            span.style.transform = 'translateY(0)';
+          }, delay);
+        }
+
+        container.appendChild(span);
+        delay += baseDelay;
+      }
+
+      if (useScroll) AOS.refresh();
+    }
+
+    revealText('.animateRevealText', 250, 10, false);
 })

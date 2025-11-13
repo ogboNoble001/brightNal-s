@@ -1,320 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Reveal Animation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letter Reveal Animation</title>
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            padding: 2rem;
-            gap: 3rem;
-        }
+  <!-- AOS library -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-        .reveal-container {
-            overflow: hidden;
-            display: inline-block;
-        }
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f8f9fa;
+      overflow-x: hidden;
+    }
 
-        .reveal-word {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(100%);
-            transition: none;
-        }
+    h2 {
+      font-size: 2rem;
+      line-height: 1.5;
+      color: #222;
+      text-align: center;
+      max-width: 90%;
+    }
 
-        .reveal-word.animated {
-            animation: revealWord 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-        }
-
-        @keyframes revealWord {
-            0% {
-                opacity: 0;
-                transform: translateY(120%) rotateX(-90deg);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) rotateX(0deg);
-            }
-        }
-
-        h1, h2, p {
-            color: white;
-            text-align: center;
-            line-height: 1.6;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 600;
-            opacity: 0.95;
-        }
-
-        p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            max-width: 600px;
-            opacity: 0.9;
-        }
-
-        .demo-section {
-            width: 100%;
-            max-width: 900px;
-        }
-
-        button {
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            color: white;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid white;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-    </style>
+     .animatedText span {
+      display: inline-block;
+      transform: translateY(20px);
+      opacity: 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="demo-section">
-        <h1 class="animate-text">Professional Word Reveal Animation</h1>
-        <h2 class="animate-text">Built with Pure JavaScript</h2>
-        <p class="animate-text">This animation system splits text into individual words and animates them sequentially with a smooth upward reveal effect. It's fully reusable and production-ready.</p>
-        <button onclick="replayAnimations()">Replay Animations</button>
-    </div>
+  <h2 class="animatedText">Creating environment setup...</h2>
 
-    <script>
-        /**
-         * WordRevealAnimator - Professional text animation system
-         * Animates text by revealing words sequentially with customizable parameters
-         */
-        class WordRevealAnimator {
-            constructor(options = {}) {
-                this.defaults = {
-                    selector: '.animate-text',
-                    delay: 80,
-                    startDelay: 0,
-                    animationClass: 'animated',
-                    containerClass: 'reveal-container',
-                    wordClass: 'reveal-word',
-                    preserveSpaces: true,
-                    onComplete: null,
-                    onWordReveal: null
-                };
-                
-                this.config = { ...this.defaults, ...options };
-                this.elements = [];
-                this.animationQueue = [];
-            }
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
 
-            /**
-             * Initialize the animator and process all matching elements
-             */
-            init() {
-                const elements = document.querySelectorAll(this.config.selector);
-                
-                elements.forEach((el, index) => {
-                    this.processElement(el, index);
-                });
+    function revealText(selector, baseDelay = 50, wordPause = 300, useScroll = false) {
+      const container = document.querySelector(selector);
+      const text = container.textContent.trim();
+      container.textContent = '';
+      let delay = 0;
 
-                return this;
-            }
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const span = document.createElement('span');
 
-            /**
-             * Process a single element and prepare it for animation
-             */
-            processElement(element, elementIndex) {
-                if (element.dataset.wordRevealProcessed) return;
-                
-                const text = element.textContent;
-                const words = this.splitIntoWords(text);
-                
-                element.innerHTML = '';
-                element.dataset.wordRevealProcessed = 'true';
-                
-                const fragments = words.map((word, index) => {
-                    const container = document.createElement('span');
-                    container.className = this.config.containerClass;
-                    container.style.display = 'inline-block';
-                    container.style.overflow = 'hidden';
-                    container.style.verticalAlign = 'bottom';
-                    
-                    const wordSpan = document.createElement('span');
-                    wordSpan.className = this.config.wordClass;
-                    wordSpan.textContent = word;
-                    wordSpan.style.display = 'inline-block';
-                    
-                    container.appendChild(wordSpan);
-                    
-                    return { container, wordSpan, word, index };
-                });
-
-                fragments.forEach(({ container }, index) => {
-                    element.appendChild(container);
-                    if (index < fragments.length - 1 && this.config.preserveSpaces) {
-                        element.appendChild(document.createTextNode(' '));
-                    }
-                });
-
-                this.elements.push({
-                    element,
-                    fragments,
-                    elementIndex
-                });
-
-                this.scheduleAnimation(fragments, elementIndex);
-            }
-
-            /**
-             * Split text into words while preserving structure
-             */
-            splitIntoWords(text) {
-                return text.trim().split(/\s+/);
-            }
-
-            /**
-             * Schedule animation for word fragments
-             */
-            scheduleAnimation(fragments, elementIndex) {
-                const startDelay = this.config.startDelay + (elementIndex * fragments.length * this.config.delay);
-                
-                fragments.forEach(({ wordSpan, word, index }) => {
-                    const delay = startDelay + (index * this.config.delay);
-                    
-                    this.animationQueue.push({
-                        wordSpan,
-                        word,
-                        delay,
-                        elementIndex,
-                        wordIndex: index
-                    });
-                });
-            }
-
-            /**
-             * Execute all scheduled animations
-             */
-            animate() {
-                this.animationQueue.forEach(({ wordSpan, word, delay, elementIndex, wordIndex }) => {
-                    setTimeout(() => {
-                        wordSpan.classList.add(this.config.animationClass);
-                        
-                        if (this.config.onWordReveal) {
-                            this.config.onWordReveal(word, wordIndex, elementIndex);
-                        }
-                    }, delay);
-                });
-
-                if (this.config.onComplete && this.animationQueue.length > 0) {
-                    const lastAnimation = this.animationQueue[this.animationQueue.length - 1];
-                    setTimeout(() => {
-                        this.config.onComplete();
-                    }, lastAnimation.delay + 600);
-                }
-
-                return this;
-            }
-
-            /**
-             * Reset all animations to initial state
-             */
-            reset() {
-                this.elements.forEach(({ fragments }) => {
-                    fragments.forEach(({ wordSpan }) => {
-                        wordSpan.classList.remove(this.config.animationClass);
-                    });
-                });
-
-                return this;
-            }
-
-            /**
-             * Destroy the animator and clean up
-             */
-            destroy() {
-                this.elements.forEach(({ element }) => {
-                    delete element.dataset.wordRevealProcessed;
-                });
-                
-                this.elements = [];
-                this.animationQueue = [];
-            }
-
-            /**
-             * Static method for quick one-liner initialization
-             */
-            static create(options) {
-                return new WordRevealAnimator(options).init().animate();
-            }
-        }
-
-        // Initialize animations on page load
-        let animator;
-        
-        function initAnimations() {
-            animator = new WordRevealAnimator({
-                selector: '.animate-text',
-                delay: 100,
-                startDelay: 300,
-                onWordReveal: (word, wordIndex, elementIndex) => {
-                    // Optional: Add sound effects, analytics, etc.
-                    console.log(`Revealed: "${word}" (word ${wordIndex} in element ${elementIndex})`);
-                },
-                onComplete: () => {
-                    console.log('All animations complete!');
-                }
-            }).init().animate();
-        }
-
-        function replayAnimations() {
-            if (animator) {
-                animator.reset();
-                setTimeout(() => {
-                    animator.animate();
-                }, 100);
-            }
-        }
-
-        // Auto-initialize when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initAnimations);
+        if (char === ' ') {
+          span.innerHTML = '&nbsp;';
+          delay += wordPause;
         } else {
-            initAnimations();
+          span.textContent = char;
         }
 
-        // Export for use in modules
-        if (typeof module !== 'undefined' && module.exports) {
-            module.exports = WordRevealAnimator;
+        if (useScroll) {
+          span.setAttribute('data-aos', 'fade-up');
+          span.setAttribute('data-aos-delay', delay.toString());
+          span.setAttribute('data-aos-duration', '400');
+        } else {
+          setTimeout(() => {
+            span.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            span.style.opacity = 1;
+            span.style.transform = 'translateY(0)';
+          }, delay);
         }
-    </script>
+
+        container.appendChild(span);
+        delay += baseDelay;
+      }
+
+      if (useScroll) AOS.refresh();
+    }
+
+    // ▼ Toggle last parameter for on-load or scroll animation ▼
+    revealText('.animatedText', 220, 10, false);
+  </script>
 </body>
 </html>
