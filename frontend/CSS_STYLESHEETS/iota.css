@@ -222,11 +222,13 @@ section.mainSection{
     margin-right: auto;
     flex-wrap: wrap;
     width: 100%;
+    height: fit-content;
     gap: 1.5em;
 }
 
 section.mainSection section.mainSection-main{
     position: relative;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -259,7 +261,8 @@ section.mainSection-main div.mainSection-main-text .masked-word{
 
 section.mainSection-main div.mainSection-main-tagline {
     margin-bottom: 1em;
-    max-width: 330px;
+    margin: 0 auto;
+    max-width: 230px;
     font-size: clamp(0.75rem, 1.5vw, 0.9rem);
     font-weight: var(--regular-font-weight);
     color: var(--text-muted-color);
@@ -353,7 +356,7 @@ section.mainSection .mainSection-main-clientReviews .reviewSubText{
 section.mainSection section.mainSection-Img_Video-Prnt{
     width: calc(50% - 0.75em);
     min-width: 320px;
-    height: 100%;
+    display: flex;
     flex: 1 1 45%;
     border-radius: 32px;
     overflow: hidden;
@@ -361,15 +364,30 @@ section.mainSection section.mainSection-Img_Video-Prnt{
 }
 
 section.mainSection section.mainSection-Img_Video-Prnt .mainSection-Img_Video-Media{
-    width: 100%;
+    width: 50%;
     height: 340px;
-    border-radius: 32px;
+    position: relative;
     object-fit: cover;
-    display: block;
+    padding: 4em 2em;
+    display: flex;
+    z-index: 8;
+}
+section.mainSection section.mainSection-Img_Video-Prnt .mainSection-Img_Video-Media::before {
+    content: '';
+    position: absolute;
+    background-color: var(--secondary-color);
+    opacity: .5;
+    width: 150px;
+    max-width: 340px;
+    z-index: -1;
+    height: 65%;
+    
+    border-radius: 64px 64px 0 0;
 }
 section.mainSection-Img_Video-Prnt .mainSection-Img_Video-Media img{
-    height: 230px;
-    max-height: 230px;
+    height: 100%;
+    margin-left: .57em;
+    transform: scale(1.5);
 }
 .animateTxt span {
     display: inline-block;
@@ -377,4 +395,13 @@ section.mainSection-Img_Video-Prnt .mainSection-Img_Video-Media img{
     animation: 
     text-focus-in 1s ease forwards,
     scale-in-tl 0.5s ease forwards;
+}
+.mainSection-overlayText{
+    font-weight: var(light-font-weight);
+    color: var(--text-muted-color);
+    font-size: medium;
+    margin-right: 1em;
+    letter-spacing: .3em;
+    margin-bottom: 20vh;
+    text-transform: uppercase;
 }
